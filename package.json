@@ -1,0 +1,30 @@
+{
+  "name": "trace-ai-sdk",
+  "version": "1.0.0",
+  "description": "A starter npm package for Trace AI SDK.",
+  "scripts": {
+    "build": "babel src/frontend --out-dir frontend",
+    "test": "echo 'No tests specified.'",
+    "lint": "echo 'No lint step defined.'",
+    "package": "npm run build && npm pack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@opentelemetry/api": "^1.9.0",
+    "@opentelemetry/core": "^2.0.1",
+    "@opentelemetry/instrumentation": "^0.203.0",
+    "@opentelemetry/instrumentation-fetch": "^0.203.0",
+    "@opentelemetry/instrumentation-xml-http-request": "^0.203.0",
+    "@opentelemetry/sdk-trace-web": "^2.0.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.28.0",
+    "@babel/core": "^7.28.0",
+    "@babel/preset-env": "^7.28.0"
+  },
+   "files": [
+    "frontend"
+  ]
+}
