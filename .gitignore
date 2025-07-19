@@ -3,3 +3,4 @@ frontend/
 .env
 *.tgz
 !src/frontend/
+.vscode/
