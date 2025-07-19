@@ -1,12 +1,13 @@
 {
   "name": "trace-ai-sdk",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A starter npm package for Trace AI SDK.",
   "scripts": {
     "build": "babel src/frontend --out-dir frontend",
     "test": "echo 'No tests specified.'",
     "lint": "echo 'No lint step defined.'",
-    "package": "npm run build && npm pack"
+    "package": "npm run build && npm pack",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [],
   "author": "",
