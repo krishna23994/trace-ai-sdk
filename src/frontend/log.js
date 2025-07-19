@@ -1,12 +1,12 @@
 import { trace } from "@opentelemetry/api";
 import { config } from "./init";
 
-const apiUrl = "https://api.example.com/logs";
+const apiUrl = "http://localhost:5000/v1/logs";
 
 function getTraceInfo() {
     const span = trace.getActiveSpan();
     const traceInfo = {
-        traceId: span?.spanContext()?.traceId || `default-${config.appName}-trace`,
+        "trace_id": span?.spanContext()?.traceId || `default-${config.appName}-trace`,
         spanId: span?.spanContext()?.spanId || `default-${config.appName}-span`
     };
     return traceInfo
