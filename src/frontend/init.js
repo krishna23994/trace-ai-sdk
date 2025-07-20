@@ -26,11 +26,17 @@ export const config = {
     apiKey: '',
     appName: '',
     initTracer: null,
+    mainSpan: null,
 }
 
 export function init({appName, apiKey}) {
     config.apiKey = apiKey;
     config.appName = appName;
-    config.initTracer = trace.getTracer(appName);
+    if(!config.initTracer){
+    const initTracer = trace.getTracer(appName);
+    config.initTracer = initTracer;
+    config.mainSpan = initTracer.startSpan(appName);
+    }
 }
+   
 

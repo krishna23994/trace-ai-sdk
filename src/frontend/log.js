@@ -12,13 +12,23 @@ function getTraceInfo() {
     return traceInfo
 }
 
+const normalizeMetadata = (metadata) => {
+    if (typeof metadata === "object" && !Array.isArray(metadata)) {
+        return Object.entries(metadata).reduce((acc, [key, value]) => {
+            acc[key] = typeof value === "string" ? value : JSON.stringify(value);
+            return acc;
+        }, {});
+    }
+    return metadata;
+}
+
 function sendLog(level, message, metadata = {}) {
     const logEntry = {
         level,
         message,
         ...getTraceInfo(),
         timestamp: new Date().toISOString(),
-        metadata,
+        metadata: normalizeMetadata(metadata),
         source: "browser",
         appName: config.appName
     };
