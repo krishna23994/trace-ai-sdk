@@ -22,11 +22,17 @@ const normalizeMetadata = (metadata) => {
     return metadata;
 }
 
-function sendLog(level, message, metadata = {}) {
+function sendLog(level, message, metadata = {}, error = null) {
+    let errorStack = {};
+    if(level === "error" && error) {
+        const {stack, message} = error;
+        errorStack = {stack, errorMessage: message};
+    }
     const logEntry = {
         level,
         message,
         ...getTraceInfo(),
+        ...errorStack,
         timestamp: new Date().toISOString(),
         metadata: normalizeMetadata(metadata),
         source: "browser",
@@ -48,6 +54,6 @@ function sendLog(level, message, metadata = {}) {
 export const log = {
     info: (message, metadata) => sendLog("info", message, metadata),
     debug: (message, metadata) => sendLog("debug", message, metadata),
-    error: (message, metadata) => sendLog("error", message, metadata),
+    error: (message, metadata,error) => sendLog("error", message, metadata,error),
     warn: (message, metadata) => sendLog("warn", message, metadata),
 };
