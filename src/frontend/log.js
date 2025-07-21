@@ -33,12 +33,16 @@ function sendLog(level, message, metadata = {}) {
         appName: config.appName
     };
 
-    fetch(apiUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", 'x-api-key': config.apiKey },
-        body: JSON.stringify(logEntry),
-    }).catch((err) => {
-    });
+    if (config.pushForLogLevel.includes(level)) {
+        fetch(apiUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", 'x-api-key': config.apiKey },
+            body: JSON.stringify(logEntry),
+        }).catch((err) => {
+        });
+    }else{
+        console.warn(`Log level ${level} is not configured for pushing.`, logEntry);
+    }
 }
 
 export const log = {

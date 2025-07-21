@@ -1,6 +1,6 @@
 {
   "name": "trace-ai-sdk",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A starter npm package for Trace AI SDK.",
   "scripts": {
     "build": "babel src/frontend --out-dir frontend",

@@ -27,11 +27,13 @@ export const config = {
     appName: '',
     initTracer: null,
     mainSpan: null,
+    pushForLogLevel: ['info', 'debug', 'error', 'warn'],
 }
 
-export function init({appName, apiKey}) {
+export function init({appName, apiKey, pushForLogLevel}) {
     config.apiKey = apiKey;
     config.appName = appName;
+    config.pushForLogLevel = pushForLogLevel || config.pushForLogLevel;
     if(!config.initTracer){
     const initTracer = trace.getTracer(appName);
     config.initTracer = initTracer;
